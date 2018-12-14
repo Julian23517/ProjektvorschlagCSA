@@ -29,7 +29,7 @@ Wenn man nun einen Beruf von 1 auf Level 200 Leveln möchte, muss man ziemlich v
 welche Ressourcen man jetzt schon hat und welche nicht. Gerade wenn man für die Herstellung eines Gegenstandes Gegenstände benötigt, die ebenfalls hergestellt werden müssen.
 
 Um das ganze besser planbar und übersichtlich zu machen, wollen wir den Ressourcenplaner entwerfen. Der Benutzer kann also unserem Programm sagen, welche Gegenstände er gerne herstellen
-würde, und unser Programm erstellt automatisch eine Liste von allen Ressourcen in einer übersichtlichen Liste.
+würde, und unser Programm erstellt automatisch eine Liste von allen Ressourcen, die benötigt werden um alle Gegenstände auf der Liste herzustellen, in einer übersichtlichen Liste.
 Wie dieser Clientseitig umgesetzt werden soll, wird im Abschnitt "Abstract Client" näher beschrieben.
 
 
@@ -118,10 +118,11 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur incidunt 
 
 ## UML
 
-Hier einmal ein UML Diagramm von den Objekten, die wir benötigen werden.
-Ein User Objekt hat eine Liste von beliebig vielen Item Liste Objekten. Eine *ItemListe* enthält beliebig viele Item Objekte. Ein Item Objekt besitzt keine (wenn das Item nicht
-herstellbar ist) bis eine Rezeptur. Ein Item besitzt außerdem die Attribute name, id, level, beruf, icon und anzahlBenoetigt. "level" bildet das Level des Items ab, "beruf" speichert
-den Beruf mit dem man den Gegenstand herstellen kann und "icon" speichert das .png zu dem jeweiligen Item. Eine Rezeptur
+Hier ein UML Diagramm von den Objekten, die wir benötigen werden.
+Ein **User** Objekt hat eine Liste von beliebig vielen **ItemListe** Objekten. Eine **ItemListe** enthält beliebig viele **Item** Objekte. Ein **Item** Objekt besitzt keine (wenn das Item nicht
+herstellbar ist) bis eine **Rezeptur**. Ein **Item** besitzt außerdem die Attribute name, id, level, beruf, icon und anzahlBenoetigt. "level" bildet das Level des Items ab, "beruf" speichert
+den Beruf mit dem man den Gegenstand herstellen kann und "icon" speichert das .png zu dem jeweiligen Item. Eine **Rezeptur** besteht aus eins bis acht **RezepturItem** Objekten.
+**RezepturItem** erbt alle Attribute von **Item** und hat zusätzlich noch "anzahlBenoetigt" als Attribut, welches beschreibt, wie oft das Item für die Rezeptur benötigt wird.
 
 ![](uml/uml_diagramm_dofus_ressourcenplaner.svg)
 
