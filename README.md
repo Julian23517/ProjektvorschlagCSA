@@ -124,13 +124,13 @@ herstellbar ist) bis eine **Rezeptur**. Ein **Item** besitzt außerdem die Attri
 den Beruf mit dem man den Gegenstand herstellen kann und "icon" speichert das .png zu dem jeweiligen Item. Eine **Rezeptur** besteht aus eins bis acht **RezepturItem** Objekten.
 **RezepturItem** erbt alle Attribute von **Item** und hat zusätzlich noch "anzahlBenoetigt" als Attribut, welches beschreibt, wie oft das Item für die Rezeptur benötigt wird.
 
-![](uml/uml_diagramm_dofus_ressourcenplaner.svg)
+![](diagrams/uml_diagramm_dofus_ressourcenplaner.svg)
 
 ## ER-Diagramm
 
 Auf der Datenbank werden die Daten folgendermaßen darstellen:
 
-![](er_diagramm/er_diagramm_dofus_ressourcenplaner.svg)
+![](diagrams/er_diagramm_dofus_ressourcenplaner.svg)
 
 ## Relationales Datenbankschema
 
