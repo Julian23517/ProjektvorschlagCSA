@@ -28,7 +28,8 @@ Ressourcen, die man von Monstern bekommt. Um einen Beruf zu Leveln, muss man Geg
 Wenn man nun einen Beruf von 1 auf Level 200 Leveln möchte, muss man ziemlich viele Gegenstände herstellen und man verliert leicht den Überblick,
 welche Ressourcen man jetzt schon hat und welche nicht. Gerade wenn man für die Herstellung eines Gegenstandes Gegenstände benötigt, die ebenfalls hergestellt werden müssen.
 
-Um das ganze besser planbar und übersichtlich zu machen, wollen wir den Ressourcenplaner entwerfen.
+Um das ganze besser planbar und übersichtlich zu machen, wollen wir den Ressourcenplaner entwerfen. Der Benutzer kann also unserem Programm sagen, welche Gegenstände er gerne herstellen
+würde, und unser Programm erstellt automatisch eine Liste von allen Ressourcen in einer übersichtlichen Liste.
 Wie dieser Clientseitig umgesetzt werden soll, wird im Abschnitt "Abstract Client" näher beschrieben.
 
 
@@ -38,9 +39,9 @@ Verantwortlicher: Jennifer Nguyen
 ### Menüpunkt "Übersicht"
 
 Nachdem der Benutzer sich Registriert und eingeloggt hat, befindet er sich auf dem Menüpunkt "Übersicht". Dort sieht er eine Übersicht von allen herstellbaren Gegenständen
-im Spiel. Diese kann er nach Level und/oder Beruf filtern oder auch nach einem bestimmten Gegenstand suchen.
-Für jeden der angezeigten Gegenständen hat er nun über Buttons die Möglichkeit sich entweder die Rezeptur anzeigen zu lassen (also die Ressourcen die zur Herstellung des Gegenstandes
-benötigt werden) oder ihn in eine Liste hinzuzufügen. Wenn der Benutzer noch keine Liste angelegt hat, oder es in einer neuen Liste speichern möchte, hat er hier gleich die
+im Spiel. Diese kann er nach Level und/oder Beruf filtern, oder auch nach einem bestimmten Gegenstand suchen.
+Für jeden der angezeigten Gegenständen hat er nun über Buttons die Möglichkeit, sich entweder die Rezeptur anzeigen zu lassen (also die Ressourcen die zur Herstellung des Gegenstandes
+benötigt werden), oder ihn in eine Liste hinzuzufügen. Wenn der Benutzer noch keine Liste angelegt hat, oder es in einer neuen Liste speichern möchte, hat er hier gleich die
 Möglichkeit eine neue Liste anzulegen.
 
 ### Menüpunkt "Meine Listen"
@@ -48,10 +49,17 @@ Möglichkeit eine neue Liste anzulegen.
 Hier hat der Benutzer eine Übersicht von all seinen erstellten Listen. Über einen Button hat der Benutzer die Möglichkeit die jeweiligen Listen zu löschen.
 Wenn er auf eine seiner Listen klickt, wird ihm der Reiter Gegenstand (auf dem er sich direkt befindet) und der Reiter Ressourcen angezeigt.
 
-#### Reiter Gegenstand
+#### Reiter "Gegenstand"
 
-Hier wird eine Übersicht der in der Liste hinzugefügten Items angezeigt.Pro Item wird Anzahl (wie oft soll der Gegenstand hergestellt werden?), Level des Gegenstandes,
-der Beruf der den entsprechenden Gegenstand herstellen kann und die Ressourcen die für den Gegenstand benötigt werden angezeigt.
+Hier wird eine Übersicht der in der Liste hinzugefügten Items angezeigt. Pro Item wird Anzahl (wie oft soll der Gegenstand hergestellt werden?), Level des Gegenstandes,
+der Beruf der den entsprechenden Gegenstand herstellen kann und die Ressourcen, die für den Gegenstand benötigt werden, angezeigt.
+
+#### Reiter "Ressourcen"
+
+Hier hat der Benutzer eine Übersicht über alle Ressourcen die er benötigt um die auf der Liste hinzugefügten Items herzustellen. Es ist möglich die Anzahl an bereits gesammelten
+Ressourcen einzutragen und wenn die benötigte Anzahl einer Ressource erreicht wurde, wird dies kenntlich gemacht. So hat der Benutzer eine gute Übersicht was er bereits gesammelt hat
+und was er noch besorgen muss. Gegenstände die eine eigene Rezeptur benötigen, werden ebenfalls gekennzeichnet und über einen klick, werden die dafür benötigten
+Gegenstände mit auf die Liste geschrieben.
 
 
 
@@ -103,22 +111,19 @@ Consequuntur incidunt iste neque nihil nulla omnis quam, saepe veritatis. Corpor
 
 
 ## Abstract Server
-Verantwortlicher: Johannes Meier
+Verantwortlicher: Julian Schulzeck
 
 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur incidunt iste neque nihil nulla omnis quam, saepe veritatis. Corporis labore maiores modi.
 
 
-## ORM
+## UML
 
-Ab eveniet maiores obcaecati omnis praesentium quisquam quos veniam voluptatibus. Ea, libero, ratione. Autem cupiditate dolorem et, magni minima minus nisi quaerat recusandae repellendus voluptatibus! A, accusamus accusantium deleniti ducimus eius eveniet fugit illo in molestiae, nisi quod, saepe tempore velit! Assumenda est nobis porro suscipit veniam.
+Hier einmal ein UML Diagramm von den Objekten, die wir benötigen werden.
+Ein User Objekt hat eine Liste von beliebig vielen Item Liste Objekten. Eine *ItemListe* enthält beliebig viele Item Objekte. Ein Item Objekt besitzt keine (wenn das Item nicht
+herstellbar ist) bis eine Rezeptur. Ein Item besitzt außerdem die Attribute name, id, level, beruf, icon und anzahlBenoetigt. "level" bildet das Level des Items ab, "beruf" speichert
+den Beruf mit dem man den Gegenstand herstellen kann und "icon" speichert das .png zu dem jeweiligen Item. Eine Rezeptur
 
-Autem cupiditate eius est ex iure necessitatibus officiis omnis porro quod sequi?
-
-Consequuntur incidunt iste neque nihil nulla omnis quam, saepe veritatis. Corporis labore maiores modi.
-
-Animi aspernatur commodi consequatur libero nesciunt nisi, praesentium quidem repellendus sit sunt. Maiores, officia omnis!
-
-![](orm/Concrete_Table_Inheritance.svg)
+![](uml/uml_diagramm_dofus_ressourcenplaner.svg)
 
 
 ## API-Beschreibung
