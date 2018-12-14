@@ -126,6 +126,32 @@ den Beruf mit dem man den Gegenstand herstellen kann und "icon" speichert das .p
 
 ![](uml/uml_diagramm_dofus_ressourcenplaner.svg)
 
+## ER-Diagramm
+
+Auf der Datenbank werden die Daten folgendermaßen darstellen:
+
+![](er_diagramm/er_diagramm_dofus_ressourcenplaner.svg)
+
+## Relationales Datenbankschema
+
+Aus dem ER-Diagramm ergibt sich der folgende Relationale Entwurf:
+
+### Entity-Typen
+
+Users: **username: String**, passwort: String
+
+ItemListen: **itemListeId: int**, name: String
+
+Items: **itemId: int**, name: String, level: int, beruf: String, icon: String
+
+### Relationship-Typen
+
+besitztListe: **username: String**, **itemListeId: int**
+
+enthaeltItems: **itemListeId: int**, **itemId: int**
+
+hatAlsRezeptur: **itemId: int**, **rezepturItemId: int**, anzahlBenoetigt: int
+
 
 ## API-Beschreibung
 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad consequuntur, doloribus hic impedit quaerat quam quas qui voluptas voluptatibus! Eius facere harum nisi repellendus vel.
