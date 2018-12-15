@@ -113,7 +113,10 @@ Consequuntur incidunt iste neque nihil nulla omnis quam, saepe veritatis. Corpor
 ## Abstract Server
 Verantwortlicher: Julian Schulzeck
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur incidunt iste neque nihil nulla omnis quam, saepe veritatis. Corporis labore maiores modi.
+Die Hauptaufgabe des Server wird es sein, die Datenbank, die wir mit SQLite 3 umsetzen wollen, zu verwalten und über eine API die Daten an den Client zu liefern.
+Um die enorm große Datenmenge (aktuell rund 5000 herstellbare Gegenstände und 2710 unterschiedliche Ressourcen) nicht per Hand in die Datenbank eintragen zu müssen, werde ich ein
+"Hilfsprogramm" mit Java (und der Bibliothek Selenium) schreiben, welche die Datenbank erstellt indem es die Daten von der Website Crawled. Wir haben uns gegen ein "echtzeit crawlen"
+der Daten entschieden, da uns keine öffentliche API für die Dofus Website zur Verfügung steht und zu viele Anfragen an den Dofus Server einen temporären "Bann" mit sich zieht.
 
 
 ## UML
@@ -128,7 +131,8 @@ den Beruf mit dem man den Gegenstand herstellen kann und "icon" speichert das .p
 
 ## ER-Diagramm
 
-Auf der Datenbank werden die Daten folgendermaßen darstellen:
+Auf der Datenbank werden die Daten folgendermaßen dargestellt:
+(Die Fettgedruckten Attribute stellen die Primärschlüssel dar)
 
 ![](diagrams/er_diagramm_dofus_ressourcenplaner.svg)
 
@@ -156,37 +160,84 @@ hatAlsRezeptur: **itemId: int**, **rezepturItemId: int**, anzahlBenoetigt: int
 ## API-Beschreibung
 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad consequuntur, doloribus hic impedit quaerat quam quas qui voluptas voluptatibus! Eius facere harum nisi repellendus vel.
 
-### `GET /foo`
-In dieser Route nimmt der Server Lorem entgegen.
-Als Antwort liefert er ein ipsum dolor sit amet, consectetur adipisicing elit. Ad consequuntur, doloribus hic impedit quaerat quam quas qui voluptas voluptatibus! Eius facere harum nisi repellendus vel.
+### `GET /user`
+Auf dieser Route liefert der Server alle User Objekte, die in der Datenbank gespeichert sind`
 
-### `POST /foo`
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad consequuntur, doloribus hic impedit quaerat quam quas qui voluptas voluptatibus! Eius facere harum nisi repellendus vel.
+### `GET /user/:username`
+Auf dieser Route nimmt der Server einen usernamen entgegen.
+Als Antwort liefert er das User Objekt mit dem entsprechenden usernamen.
 
-### `PUT /foo`
-Animi aspernatur commodi consequatur libero nesciunt nisi, praesentium quidem repellendus sit sunt. Maiores, officia omnis!
+### `GET /user/:username/itemlisten`
+Auf dieser Route nimmt der Server einen usernamen entgegen.
+Als Antwort liefert er alle ItemListe Objekte, die der entsprechende User gespeichert hat.
 
-### `DELETE /foo`
-Consequuntur incidunt iste neque nihil nulla omnis quam, saepe veritatis. Corporis labore maiores modi.
+### `GET /items`
+Auf dieser Route liefert der Server alle Item Objekte, die in der Datenbank gespeichert sind`
+
+### `Get /items/:itemId`
+Auf dieser Route nimmt der Server eine itemId entgegen.
+Als Antwort liefert er das Item Objekt mit der entsprechenden itemId`
+
+### `POST /user`
+Auf dieser Route nimmt der Server ein User Objekt entgegen und trägt es in die Datenbank ein falls es den User noch nicht gibt.
+Als Antwort liefert er ein taskSucceeded Objekt.
+Wenn der username des übergebenen Users bereits in der Datenbank existiert, ist success = false ansonsten true.
+
+### `POST /user/:username/itemliste`
+Auf dieser Route nimmt der Server ein usernamen und ein ItemListe Objekt entgegen und trägt es in die Datenbank ein falls der User existiert.
+Als Antwort liefert er ein taskSucceeded Objekt.
+Wenn der username des übergebenen Users nicht existiert, ist success = false ansonsten true.
+
+### `DELETE /user/:username`
+Auf dieser Route nimmt der Server einen usernamen entgegen.
+Falls der username existiert wird der Entsprechende User mit samt seinen Daten (ItemListen) aus der Datenbank gelöscht.
+Als Antwort liefert der Server ein taskSucceeded Objekt.
+Wenn der username des übergebenen Users nicht existiert, ist success = false ansonsten true.
 
 ### Template Object
 
-Animi aspernatur commodi consequatur libero nesciunt nisi, praesentium quidem repellendus sit sunt. Maiores, officia omnis!
-
+#### Template Object User
+Enthält username und Passwort
 
 ```javascript
 {
-  success: false,
-  msg: "...."
+  username: "katzenlover",
+  passwort: "felixFelicis"
 }
 ```
 
-Cumque delectus laboriosam magnam maxime nam porro possimus quos recusandae!
+#### Template Objekt ItemListe
+Enthält name der ItemListe und alle itemIds von Items die in der Liste gespeichert wurden
 
 ```javascript
 {
-  success: true,
-  foo: "$bar"
+  name: "SchneiderLeveln",
+  items: [6,7,42]
+}
+```
+
+#### Template Objekt Item
+Enthält itemId, name, level, beruf der den Gegenstand herstellt, den namen des Icon.png und die RezepturItems.
+Die RezepturItems sind folgendermaßen aufgebaut: {itemId, anzahlBenoetigt}.
+Also benötigt man für die Herstellung unseres Template Objekt 5 x das Item mit id = 2, 10 x das Item mit id = 4 und 1x das Item mit id = 42.
+
+```javascript
+{
+  itemId: 1,
+  name: "Gelano",
+  level: 60,
+  beruf: "Juwelier",
+  icon: "gelanoIcon.png",
+  rezepturItems:[{2,5},{4,10},{42,1}]
+}
+```
+
+#### Template Objekt taskSucceeded
+Dieses Objekt wird bei den POST und DELETE befehlen zurückgegeben. Dabei gibt "success" an, ob die Aufgabe des entsprechenden Befehls erfolgreich ausgeführt werden konnte.
+
+```javascript
+{
+  success: true
 }
 ```
 
@@ -194,76 +245,88 @@ Cumque delectus laboriosam magnam maxime nam porro possimus quos recusandae!
 
 ### Frontend
 
-Verantwortlicher: Peter Schmidt
+Verantwortlicher: Jennifer Nguyen
 
 #### Projektvorbereitung 
 
 Cumque delectus laboriosam magnam maxime nam porro possimus quos recusandae!
 
-| Aufgabe                                  | Zeit in Std |
-|------------------------------------------|------------:|
-| Wireframe Mobil Lorem                    |  4          |
-| Wireframe Desktop Lorem                  |  4          |
-| Beschreibung Funktionen Lorem            |  4          |
-| Wireframe Lorem2                         |  4          |
-| Beschreibung Funktionen Lorem2           |  4          |
-| Wireframe Lorem3                         |  4          |
-| Beschreibung Funktionen Lorem4           |  4          |
-| Verfassen des Projektvorschlags          |  8          |
-| ...                                      |  ...        |
-| **Summe**                                |  **...**    |
+| Aufgabe                                       | Zeit in Std |
+|-----------------------------------------------|------------:|
+| Projektthema überlegen + grobe Funktionen     |  8          |
+| Wireframe Mobil Registierung + Login          |  1          |
+| Wireframe Mobil Übersicht + Filter            |  1          |
+| Wireframe Mobil Meine Liste - Übersicht       |  1          |
+| Wireframe Mobil Meine Liste - Gegenstände     |  1          |
+| Wireframe Mobil Meine Liste - Ressourcen      |  1          |
+| Wireframe Web Registrierung + Login           |  1          |
+| Wireframe Web Übersicht                       |  1          |
+| Wireframe Web Meine Liste - Übersicht	        |  1          |
+| Wireframe Web Meine Liste - Gegenstände       |  1          |
+| Wireframe Web Meine Liste - Ressourcen        |  1          |
+| Aufwandseinschätzung	                        |  2          |
+| **Summe**                                     |  **20**     |
 
 
 #### Implementierung
 
-| Aufgabe                                  | Zeit in Std |
-|------------------------------------------|------------:|
-| HTML-Grundgerüst Lorem                   |  2          |
-| HTML-Grundgerüst Lorem2                  |  2          |
-| HTML-Grundgerüst Lorem3                  |  1          |
-| SCSS-Styling Breakpoint small            |  4          |
-| SCSS-Styling Breakpoint medium           |  4          |
-| SCSS-Styling Breakpoint large            |  4          |
-| Implementierung Funktion Lorem           |  6          |
-| Implementierung Funktion Lorem2          |  6          |
-| Implementierung Funktion Lorem3          |  4          |
-| ...                                      |  ...        |
-| **Summe**                                |  **...**    |
+| Aufgabe                                       | Zeit in Std |
+|-----------------------------------------------|------------:|
+| HTML Grundgerüst Registrierung + Login        |  2          |
+| HTML Grundgerüst Übersicht                    |  2          |
+| HTML Grundgerüst Meine Liste - Übersicht      |  2          |
+| HTML Grundgerüst Meine Liste - Gegenstände    |  2          |
+| HTML Grundgerüst Meine Liste - Ressourcen     |  2          |
+| CSS-Styling Breakpoint small                  |  5          |
+| CSS-Styling Breakpoint medium                 |  5          |
+| CSS-Styling Breakpoint large                  |  5          |
+| Implementierung Login + Registrierung	        |  6          |
+| Implementierung Übersichtsseite + Filter      |  8          |
+| Implementierung Übersicht über alle Listen    |  6          |
+| Implementierung Gegenstände einer Liste	    |  8          |
+| Implementierung Ressourcen in einer Liste     |  7          |
+| **Summe**                                     |  **60**     |
 
 #### Dokumentation / Tests
 
-| Aufgabe                                  | Zeit in Std |
-|------------------------------------------|------------:|
-| Dokumentation Funktion Lorem             |  4          |
-| Dokumentation Funktion Lorem2            |  1          |
-| Dokumentation Funktion Lorem3            |  2          |
-| ...                                      |  ...        |
-| Vergleich SOLL / IST Stunden             |  1          |
-| **Summe**                                |  **...**    |
+| Aufgabe                                       | Zeit in Std |
+|-----------------------------------------------|------------:|
+| Dokumentation Login + Registrierung           |  2          |
+| Dokumentation Übersichtseite                  |  3          |
+| Dokumentation Filter                          |  2          |
+| Dokumentation Übersicht über alle Listen	    |  2          |
+| Dokumentation über Gegenstände einer Liste    |  3          |
+| Dokumentation über Ressourcen in einer Liste  |  2          |
+| Dokumentation Mobil                           |  3          |
+| Test der Benutzeroberfläche                   |  2          |
+| Vergleich SOLL / IST Stunden                  |  1          |
+| **Summe**                                     |  **20**     |
 
 #### Zusammenfassung
-| Teil                                     | Zeit in Std |
-|------------------------------------------|------------:|
-| Projektvorbereitung                      |   30        |
-| Implementierung                          |  ...        |
-| Dokumentation / Tests                    |  ...        |
-| **Summe**                                |  100        |
+| Teil                                          | Zeit in Std |
+|-----------------------------------------------|------------:|
+| Projektvorbereitung                           |  20         |
+| Implementierung                               |  60         |
+| Dokumentation / Tests                         |  20         |
+| **Summe**                                     |  100        |
 
 ### Backend
 
-Verantwortlicher: Johannes Meier
+Verantwortlicher: Julian Schulzeck
 
 #### Projektvorbereitung
 
-| Aufgabe                                  | Zeit in Std |
-|------------------------------------------|------------:|
-| Backend Endpunkte / API - Beschreibung   |  5          |
-| ORM                                      |  3          |
-| Verfassen des Projektvorschlags          |  2          |
-| Verfassen ...                            |  5          |
-| Markdown                                 |  8          |
-| ...                                      |  ...        |
-| **Summe**                                |  **...**    |
+| Aufgabe                                       | Zeit in Std |
+|-----------------------------------------------|------------:|
+| Verfassen Abstract                            |  0.75       |
+| Verfassen Abstract Client                     |  1          |
+| Verfassen Abstract Server                     |  0.25       |
+| UML Diagramm                                  |  2          |
+| ER Diagramm                                   |  2          |
+| Relationales Datenbankschema                  |  1          |
+| Backend Endpunkte / API - Beschreibung        |  5          |
+| ...                                           |  ...        |
+| **Summe**                                     |  **...**    |
 
 #### Implementierung und Validierung
 
