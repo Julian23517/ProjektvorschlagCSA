@@ -20,8 +20,8 @@ Da wir beide das Online MMORPG "Dofus" spielen, sind wir auf die Idee gekommen e
 Nun was ist denn ein "Ressourcenplaner" für dieses "Dofus"?
 
 Dazu müssen wir kurz einen Teilaspekt von Dofus näher erläutern und zwar das Herstellen von Gegenständen.
-Es gibt 13 Berufe bei denen man Gegenstände herstellen kann. Jeder Beruf hat seine jeweiligen Gegenstandstypen die er herstellt.
-Welche Gegenstände man herstellen kann, hängt von dem erreichten Level in dem jeweiligen Beruf ab (Min Level: 1, Max Level: 200 bei jeweils allen Berufen) und natürlich
+Es gibt 13 Berufe bei denen man Gegenstände herstellen kann. Jeder Beruf hat seine jeweiligen Gegenstandstypen, die er herstellt.
+Welche Gegenstände man herstellen kann, hängt von dem erreichten Level in dem jeweiligen Beruf ab (Min Level: 1, Max Level: 200 bei jeweils allen Berufen) und natürlich,
 ob man die benötigten Ressourcen für den Gegenstand besitzt. Die Ressourcen können ebenfalls Gegenstände sein, die man herstellen muss oder auch einfach
 Ressourcen, die man von Monstern bekommt. Um einen Beruf zu Leveln, muss man Gegenstände herstellen.
 
@@ -34,11 +34,11 @@ Wie dieser Clientseitig umgesetzt werden soll, wird im Abschnitt "Abstract Clien
 
 
 ## Abstract Client
-Verantwortlicher: Jennifer Nguyen
+Verantwortliche: Jennifer Nguyen
 
 ### Menüpunkt "Übersicht"
 
-Nachdem der Benutzer sich Registriert und eingeloggt hat, befindet er sich auf dem Menüpunkt "Übersicht". Dort sieht er eine Übersicht von allen herstellbaren Gegenständen
+Nachdem der Benutzer sich registriert und eingeloggt hat, befindet er sich auf dem Menüpunkt "Übersicht". Dort sieht er eine Übersicht von allen herstellbaren Gegenständen
 im Spiel. Diese kann er nach Level und/oder Beruf filtern, oder auch nach einem bestimmten Gegenstand suchen.
 Für jeden der angezeigten Gegenständen hat er nun über Buttons die Möglichkeit, sich entweder die Rezeptur anzeigen zu lassen (also die Ressourcen die zur Herstellung des Gegenstandes
 benötigt werden), oder ihn in eine Liste hinzuzufügen. Wenn der Benutzer noch keine Liste angelegt hat, oder es in einer neuen Liste speichern möchte, hat er hier gleich die
@@ -56,9 +56,9 @@ der Beruf der den entsprechenden Gegenstand herstellen kann und die Ressourcen, 
 
 #### Reiter "Ressourcen"
 
-Hier hat der Benutzer eine Übersicht über alle Ressourcen die er benötigt um die auf der Liste hinzugefügten Items herzustellen. Es ist möglich die Anzahl an bereits gesammelten
+Hier hat der Benutzer eine Übersicht über alle Ressourcen, die er benötigt um die auf der Liste hinzugefügten Items herzustellen. Es ist möglich die Anzahl an bereits gesammelten
 Ressourcen einzutragen und wenn die benötigte Anzahl einer Ressource erreicht wurde, wird dies kenntlich gemacht. So hat der Benutzer eine gute Übersicht was er bereits gesammelt hat
-und was er noch besorgen muss. Gegenstände die eine eigene Rezeptur benötigen, werden ebenfalls gekennzeichnet und über einen klick, werden die dafür benötigten
+und was er noch besorgen muss. Gegenstände, die eine eigene Rezeptur benötigen, werden ebenfalls gekennzeichnet und über einen Klick werden die dafür benötigten
 Gegenstände mit auf die Liste geschrieben.
 
 ## Wireframe
@@ -67,10 +67,14 @@ Gegenstände mit auf die Liste geschrieben.
 ## Mobil
 
 ### Login
+Der Benutzer muss sich mit seinem Benutzernamen und Passwort anmelden um auf die Übersichtsseite zu kommen.
+Ist er noch nicht registriert, kann er durch den Button "Anmelden unmöglich" zur Registrierung gelangen.
 
 ![](Mobil_Mockup/Anmeldung.png)
 
 ### Registrierung
+Der Benutzer kann einen neuen Account unter Angabe von Benutzername, E-Mail und Passwort erstellen.
+Besitzt der Benutzer bereits einen Account, kann er über den Button "Bereits einen Account?" zum Login gelangen.
 
 ![](Mobil_Mockup/Registrierung.png)
 
@@ -125,9 +129,9 @@ Das ist der Filter wenn man bei Übersicht auf "Filter" klickt
 ## Abstract Server
 Verantwortlicher: Julian Schulzeck
 
-Die Hauptaufgabe des Server wird es sein, die Datenbank, die wir mit SQLite 3 umsetzen wollen, zu verwalten und über eine API die Daten an den Client zu liefern.
+Die Hauptaufgabe des Servers wird es sein, die Datenbank, die wir mit SQLite 3 umsetzen wollen, zu verwalten und über eine API die Daten an den Client zu liefern.
 Um die enorm große Datenmenge (aktuell rund 5000 herstellbare Gegenstände und 2710 unterschiedliche Ressourcen) nicht per Hand in die Datenbank eintragen zu müssen, werde ich ein
-"Hilfsprogramm" mit Java (und der Bibliothek Selenium) schreiben, welche die Datenbank erstellt indem es die Daten von der Website Crawled. Wir haben uns gegen ein "echtzeit crawlen"
+"Hilfsprogramm" mit Java (und der Bibliothek Selenium) schreiben, welche die Datenbank erstellt, indem es die Daten von der Website crawled. Wir haben uns gegen ein "Echtzeit crawlen"
 der Daten entschieden, da uns keine öffentliche API für die Dofus Website zur Verfügung steht und zu viele Anfragen an den Dofus Server einen temporären "Bann" mit sich zieht.
 
 
@@ -170,10 +174,10 @@ hatAlsRezeptur: **itemId: int**, **rezepturItemId: int**, anzahlBenoetigt: int
 
 
 ## API-Beschreibung
-Die Api bietet insgesamt fünf GET Befehle, zwei POST Befehle und ein DELETE Befehl. Die Entsprechenden Objekte sind unter dem Abschnitt "Template Object" zu finden.
+Die API bietet insgesamt fünf GET Befehle, zwei POST Befehle und ein DELETE Befehl. Die entsprechenden Objekte sind unter dem Abschnitt "Template Object" zu finden.
 
 ### `GET /user`
-Auf dieser Route liefert der Server alle User Objekte, die in der Datenbank gespeichert sind`
+Auf dieser Route liefert der Server alle User Objekte, die in der Datenbank gespeichert sind.
 
 ### `GET /user/:username`
 Auf dieser Route nimmt der Server einen usernamen entgegen.
