@@ -2,7 +2,7 @@
 
 **Hochschule Worms CSA 151 WS 2018/19**
 
-Gruppe X  
+Gruppe "Wir haben Gruppennummern?"
 
 Jennifer Nguyen
 inf2735@hs-worms.de
@@ -61,53 +61,65 @@ Ressourcen einzutragen und wenn die benötigte Anzahl einer Ressource erreicht w
 und was er noch besorgen muss. Gegenstände die eine eigene Rezeptur benötigen, werden ebenfalls gekennzeichnet und über einen klick, werden die dafür benötigten
 Gegenstände mit auf die Liste geschrieben.
 
-
-
-
-
 ## Wireframe
 
 
 ## Mobil
 
-Assumenda beatae deleniti distinctio earum eligendi harum illum in labore magni molestias nam, neque quaerat, quo sint sit totam voluptate voluptatum! Aliquam delectus dolorem ex laborum nihil odit tempora temporibus? Adipisci amet beatae culpa quae voluptatibus.
+### Login
 
+![](Mobil_Mockup/Anmeldung.png)
 
-![](wireframes/medium.jpeg)
+### Registrierung
+
+![](Mobil_Mockup/Registrierung.png)
+
+### Übersicht
+
+![](Mobil_Mockup/Übersicht.png)
+
+### Übersicht Filter
+Das ist der Filter wenn man bei Übersicht auf "Filter" klickt
+
+![](Mobil_Mockup/ÜbersichtFilter.png)
+
+### Meine Listen
+
+![](Mobil_Mockup/MeineListeÜbersicht.png)
+
+### Meine Liste - Reiter Gegenstand
+
+![](Mobil_Mockup/MeineListeGegenstand.png)
+
+### Meine Listen - Reiter Ressourcen
+
+![](Mobil_Mockup/MeineListeRessourcen.png)
 
 ## Desktop
 
-Consequuntur incidunt iste neque nihil nulla omnis quam, saepe veritatis. Corporis labore maiores modi.
+### Anmeldung
 
-### Homepage
+![](Web_Mockup/Anmeldung.png)
 
-Lorem ipsum dolor sit amet, consectetur.
+### Registrierung
 
-![](wireframes/Homepage.png)
+![](Web_Mockup/Registierung.png)
 
-### Pricing
+### Übersicht
 
-Cumque delectus laboriosam magnam maxime nam porro possimus quos recusandae!
+![](Web_Mockup/Übersicht.png)
 
-![](wireframes/Pricing.png)
+### Meine Listen
 
-### Signup
+![](Web_Mockup/MeineListeÜbersicht.png)
 
-Autem cupiditate eius est ex iure necessitatibus officiis omnis porro quod sequi?
-![](wireframes/Signup.png)
+### Meine Liste - Reiter Gegenstand
 
-### Registered
+![](Web_Mockup/MeineListe.png)
 
-Lorem ipsum dolor sit amet, consectetur.
+### Meine Listen - Reiter Ressourcen
 
-![](wireframes/Registered.png)
-
-### Support
-
-Consequuntur incidunt iste neque nihil nulla omnis quam, saepe veritatis. Corporis labore maiores modi.
-
-
-![](wireframes/Support.png)
+![](Web_Mockup/MeineListenRessourcen.png)
 
 
 ## Abstract Server
@@ -132,13 +144,13 @@ den Beruf mit dem man den Gegenstand herstellen kann und "icon" speichert das .p
 ## ER-Diagramm
 
 Auf der Datenbank werden die Daten folgendermaßen dargestellt:
-(Die Fettgedruckten Attribute stellen die Primärschlüssel dar)
 
 ![](diagrams/er_diagramm_dofus_ressourcenplaner.svg)
 
 ## Relationales Datenbankschema
 
 Aus dem ER-Diagramm ergibt sich der folgende Relationale Entwurf:
+(Die Fettgedruckten Attribute stellen die Primärschlüssel dar)
 
 ### Entity-Typen
 
@@ -158,7 +170,7 @@ hatAlsRezeptur: **itemId: int**, **rezepturItemId: int**, anzahlBenoetigt: int
 
 
 ## API-Beschreibung
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad consequuntur, doloribus hic impedit quaerat quam quas qui voluptas voluptatibus! Eius facere harum nisi repellendus vel.
+Die Api bietet insgesamt fünf GET Befehle, zwei POST Befehle und ein DELETE Befehl. Die Entsprechenden Objekte sind unter dem Abschnitt "Template Object" zu finden.
 
 ### `GET /user`
 Auf dieser Route liefert der Server alle User Objekte, die in der Datenbank gespeichert sind`
@@ -249,7 +261,6 @@ Verantwortlicher: Jennifer Nguyen
 
 #### Projektvorbereitung 
 
-Cumque delectus laboriosam magnam maxime nam porro possimus quos recusandae!
 
 | Aufgabe                                       | Zeit in Std |
 |-----------------------------------------------|------------:|
@@ -318,63 +329,73 @@ Verantwortlicher: Julian Schulzeck
 
 | Aufgabe                                       | Zeit in Std |
 |-----------------------------------------------|------------:|
+| Projektthema überlegen + grobe Funktionen     |  8          |
 | Verfassen Abstract                            |  0.75       |
 | Verfassen Abstract Client                     |  1          |
 | Verfassen Abstract Server                     |  0.25       |
+| Datenaufbau überlegen und planen              |  3          |
 | UML Diagramm                                  |  2          |
 | ER Diagramm                                   |  2          |
 | Relationales Datenbankschema                  |  1          |
-| Backend Endpunkte / API - Beschreibung        |  5          |
-| ...                                           |  ...        |
-| **Summe**                                     |  **...**    |
+| Backend Endpunkte / API - Beschreibung        |  4          |
+| Markdown                                      |  6          |
+| Aufwandseinschätzung	                        |  2          |
+| **Summe**                                     |  **30**     |
 
 #### Implementierung und Validierung
 
-| Aufgabe                                  | Zeit in Std |
-|------------------------------------------|------------:|
-| Setup Framework                          |             |
-| - Framework express                      |  0.25       |
-| - Framework jest                         |  0.5        |
-| - Framework ...                          |  0.25       |
-| DB ...                                   |  0          |
-| - Setup                                  |  4          |
-| Implementierung Auth                     |  4          |
-| Implementierung Lorem-Route              |  2          |
-| Implementierung Lorem2-Route             |  1          |
-| Implementierung Lorem3-Route             |  8          |
-| Implementierung Lorem4-Route             |  4          |
-| Implementierung Validierungsschemata     |  2          |
-| Implementierung Validierung Route 1      |  0.5        |
-| Implementierung Validierung Route 2      |  0.5        |
-| ...                                      |  ...        |
-| **Summe**                                |  **...**    |
+| Aufgabe                                        | Zeit in Std |
+|------------------------------------------------|------------:|
+| Setup Framework                                |             |
+| - Framework express                            |  0.25       |
+| - Framework jest                               |  0.5        |
+| - Framework sqlite3                            |  0.25       |
+| Datenbank                                      |             |
+| Datencrawler Implementieren                    |  8          |
+| Setup                                          |  2          |
+| Implementierung Auth                           |  3          |
+| Implementierung GET /user                      |  2          |
+| Implementierung GET /user/:username            |  2          |
+| Implementierung GET /user/:username/itemlisten |  2          |
+| Implementierung GET /items                     |  2.5        |
+| Implementierung Get /items/:itemId             |  2.5        |
+| Implementierung POST /user                     |  2.5        |
+| Implementierung POST /user/:username/itemliste |  2.5        |
+| Implementierung DELETE /user/:username         |  2          |
+| Implementierung Validierungsschemata           |  3          |
+| **Summe**                                      |  **35**     |
 
 #### Dokumentation / Tests
 
-| Aufgabe                                  | Zeit in Std |
-|------------------------------------------|------------:|
-| Setup Tests                              |  4          |
-| Test DB                                  |  1          |
-| Test Lorem1-Route                        |  1          |
-| Test Lorem2-Route                        |  0.2        |
-| Test Lorem3-Route                        |  2          |
-| API-Dokumentation Lorem1-Route           |  4          |
-| API-Dokumentation Lorem2-Route           |  2          |
-| API-Dokumentation Lorem3-Route           |  1          |
-| API-Dokumentation Lorem4-Route           |  1          |
-| Dokumentation Lorem1-Route               |  0.5        |
-| Dokumentation Lorem2-Route               |  1          |
-| Dokumentation Lorem3-Route               |  1          |
-| Dokumentation Lorem4-Route               |  0.5        |
-| ...                                      |  ...        |
-| Vergleich SOLL / IST Stunden             |  1          |
-| **Summe**                                |  **...**    |
+| Aufgabe                                             | Zeit in Std |
+|-----------------------------------------------------|------------:|
+| Setup Tests                                         |  4          |
+| Test DB                                             |  4          |
+| Test GET /user                                      |  2          |
+| Test GET /user/:username                            |  2          |
+| Test GET /user/:username/itemlisten                 |  2          |
+| Test GET /items                                     |  2          |
+| Test Get /items/:itemId                             |  2          |
+| Test POST /user                                     |  2          |
+| Test POST /user/:username/itemliste                 |  2          |
+| Test DELETE /user/:username                         |  2          |
+| API-Dokumentation GET /user                         |  1          |
+| API-Dokumentation GET /user/:username               |  1          |
+| API-Dokumentation GET /user/:username/itemlisten    |  1          |
+| API-Dokumentation GET /items                        |  1          |
+| API-Dokumentation Get /items/:itemId                |  1          |
+| API-Dokumentation POST /user                        |  1.5        |
+| API-Dokumentation POST /user/:username/itemliste    |  1.5        |
+| API-Dokumentation DELETE /user/:username            |  1          |
+| Dokumentation                                       |  1          |
+| Vergleich SOLL / IST Stunden                        |  1          |
+| **Summe**                                           |  **35**     |
 
 
 #### Zusammenfassung
 | Teil                                     | Zeit in Std |
 |------------------------------------------|------------:|
-| Projektvorbereitung                      |  ...        |
-| Implementierung                          |  ...        |
-| Dokumentation / Tests                    |  ...        |
+| Projektvorbereitung                      |  30         |
+| Implementierung                          |  35         |
+| Dokumentation / Tests                    |  35         |
 | **Summe**                                |  100        |
