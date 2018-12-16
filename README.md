@@ -2,7 +2,7 @@
 
 **Hochschule Worms CSA 151 WS 2018/19**
 
-Gruppe "Wir haben Gruppennummern?"
+Gruppe 4
 
 Jennifer Nguyen
 inf2735@hs-worms.de
