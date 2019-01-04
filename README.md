@@ -154,6 +154,7 @@ Auf der Datenbank werden die Daten folgendermaßen dargestellt:
 ## Relationales Datenbankschema
 
 Aus dem ER-Diagramm ergibt sich der folgende Relationale Entwurf:
+Edit: es wurden ItemTypen und Berufe eingefügt um zu speichern welche unterschiedlichen ItemTypen bzw. Berufe es gibt
 (Die Fettgedruckten Attribute stellen die Primärschlüssel dar)
 
 ### Entity-Typen
@@ -162,7 +163,11 @@ Users: **username: String**, passwort: String
 
 ItemListen: **itemListeId: int**, name: String
 
-Items: **itemId: int**, name: String, level: int, beruf: String, icon: String
+Items: **itemId: int**, name: String, level: int, icon: String
+
+ItemTypen: **typId: int**, name: String
+
+Berufe: **BerufeId: int**, name: String
 
 ### Relationship-Typen
 
@@ -172,6 +177,10 @@ enthaeltItems: **itemListeId: int**, **itemId: int**
 
 hatAlsRezeptur: **itemId: int**, **rezepturItemId: int**, anzahlBenoetigt: int
 
+berufStelltHer: **itemId: int**, **BerufeId**
+
+istItemTyp: **itemId: int**, **typId**
+
 
 ## API-Beschreibung
 Die API bietet insgesamt fünf GET Befehle, zwei POST Befehle und ein DELETE Befehl. Die entsprechenden Objekte sind unter dem Abschnitt "Template Object" zu finden.
@@ -179,9 +188,9 @@ Die API bietet insgesamt fünf GET Befehle, zwei POST Befehle und ein DELETE Bef
 ### `GET /user`
 Auf dieser Route liefert der Server alle User Objekte, die in der Datenbank gespeichert sind.
 
-### `GET /user/:username`
-Auf dieser Route nimmt der Server einen usernamen entgegen.
-Als Antwort liefert er das User Objekt mit dem entsprechenden usernamen.
+### `GET /user/:userId`
+Auf dieser Route nimmt der Server eine userId entgegen.
+Als Antwort liefert er das User Objekt mit der entsprechenden userId.
 
 ### `GET /user/:username/itemlisten`
 Auf dieser Route nimmt der Server einen usernamen entgegen.
@@ -189,6 +198,12 @@ Als Antwort liefert er alle ItemListe Objekte, die der entsprechende User gespei
 
 ### `GET /items`
 Auf dieser Route liefert der Server alle Item Objekte, die in der Datenbank gespeichert sind`
+
+### `GET /berufe`
+Auf dieser Route liefert der Server alle Berufe Objekte, die in der Datenbank gespeichert sind`
+
+### `GET /itemTypen`
+Auf dieser Route liefert der Server alle itemTypen Objekte, die in der Datenbank gespeichert sind`
 
 ### `Get /items/:itemId`
 Auf dieser Route nimmt der Server eine itemId entgegen.
@@ -243,8 +258,29 @@ Also benötigt man für die Herstellung unseres Template Objekt 5 x das Item mit
   name: "Gelano",
   level: 60,
   beruf: "Juwelier",
+  itemTyp: "Ring",
   icon: "gelanoIcon.png",
   rezepturItems:[{2,5},{4,10},{42,1}]
+}
+```
+
+#### Template Objekt Beruf
+Enthält berufId und name.
+
+```javascript
+{
+  berufId: 1,
+  name: Juwelier
+}
+```
+
+#### Template Objekt ItemTyp
+Enthält typId und name.
+
+```javascript
+{
+  typId: 1,
+  name: Ring
 }
 ```
 
