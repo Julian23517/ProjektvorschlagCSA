@@ -183,7 +183,7 @@ istItemTyp: **itemId: int**, **typId**
 
 
 ## API-Beschreibung
-Die API bietet insgesamt fünf GET Befehle, zwei POST Befehle und ein DELETE Befehl. Die entsprechenden Objekte sind unter dem Abschnitt "Template Object" zu finden.
+Die API bietet insgesamt neun GET Befehle, zwei POST Befehle und ein DELETE Befehl. Die entsprechenden Objekte sind unter dem Abschnitt "Template Object" zu finden.
 
 ### `GET /user`
 Auf dieser Route liefert der Server alle User Objekte, die in der Datenbank gespeichert sind.
@@ -208,6 +208,14 @@ Auf dieser Route liefert der Server alle itemTypen Objekte, die in der Datenbank
 ### `Get /items/:itemId`
 Auf dieser Route nimmt der Server eine itemId entgegen.
 Als Antwort liefert er das Item Objekt mit der entsprechenden itemId`
+
+### `Get /items/:berufId`
+Auf dieser Route nimmt der Server eine berufId entgegen.
+Als Antwort liefert er alle ItemObjekte, die durch diesen Beruf hergestellt werden`
+
+### `Get /items/:typId`
+Auf dieser Route nimmt der Server eine typId entgegen.
+Als Antwort liefert er alle ItemObjekte, die diesen Itemtyp haben.`
 
 ### `POST /user`
 Auf dieser Route nimmt der Server ein User Objekt entgegen und trägt es in die Datenbank ein falls es den User noch nicht gibt.
