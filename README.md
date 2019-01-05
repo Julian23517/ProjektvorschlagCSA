@@ -177,7 +177,7 @@ enthaeltItems: **itemListeId: int**, **itemId: int**
 
 hatAlsRezeptur: **itemId: int**, **rezepturItemId: int**, anzahlBenoetigt: int
 
-berufStelltHer: **itemId: int**, **BerufeId**
+berufStelltHer: **itemId: int**, **berufeId**
 
 istItemTyp: **itemId: int**, **typId**
 
