@@ -167,7 +167,7 @@ Items: **itemId: int**, name: String, level: int, icon: String
 
 ItemTypen: **typId: int**, name: String
 
-Berufe: **BerufeId: int**, name: String
+Berufe: **berufeId: int**, name: String
 
 ### Relationship-Typen
 
