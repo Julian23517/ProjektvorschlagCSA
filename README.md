@@ -159,7 +159,7 @@ Edit: es wurden ItemTypen und Berufe eingefügt um zu speichern welche unterschi
 
 ### Entity-Typen
 
-Users: **username: String**, passwort: String
+Users: **userId: int**, username: String, passwort: String
 
 ItemListen: **itemListeId: int**, name: String
 
@@ -171,7 +171,7 @@ Berufe: **berufeId: int**, name: String
 
 ### Relationship-Typen
 
-besitztListe: **username: String**, **itemListeId: int**
+besitztListe: **userId: int**, **itemListeId: int**
 
 enthaeltItems: **itemListeId: int**, **itemId: int**
 
