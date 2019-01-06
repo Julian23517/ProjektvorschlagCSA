@@ -192,8 +192,8 @@ Auf dieser Route liefert der Server alle User Objekte, die in der Datenbank gesp
 Auf dieser Route nimmt der Server eine userId entgegen.
 Als Antwort liefert er das User Objekt mit der entsprechenden userId.
 
-### `GET /user/:username/itemlisten`
-Auf dieser Route nimmt der Server einen usernamen entgegen.
+### `GET /user/:userId/itemlisten`
+Auf dieser Route nimmt der Server eine userId entgegen.
 Als Antwort liefert er alle ItemListe Objekte, die der entsprechende User gespeichert hat.
 
 ### `GET /items`
