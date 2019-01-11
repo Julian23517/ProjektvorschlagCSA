@@ -197,7 +197,7 @@ Auf dieser Route nimmt der Server eine userId entgegen.
 Als Antwort liefert er alle ItemListe Objekte, die der entsprechende User gespeichert hat.
 
 ### `GET /items`
-Auf dieser Route liefert der Server alle Item Objekte, die in der Datenbank gespeichert sind`
+Auf dieser Route liefert der Server alle Item Objekte die herstellbar sind`
 
 ### `GET /berufe`
 Auf dieser Route liefert der Server alle Berufe Objekte, die in der Datenbank gespeichert sind`
@@ -236,10 +236,11 @@ Wenn der username des übergebenen Users nicht existiert, ist success = false an
 ### Template Object
 
 #### Template Object User
-Enthält username und Passwort
+Enthält id, username und Passwort
 
 ```javascript
 {
+  userId: 0,
   username: "katzenlover",
   passwort: "felixFelicis"
 }
@@ -250,6 +251,7 @@ Enthält name der ItemListe und alle itemIds von Items die in der Liste gespeich
 
 ```javascript
 {
+  itemListeId: 0,
   name: "SchneiderLeveln",
   items: [6,7,42]
 }
@@ -268,7 +270,7 @@ Also benötigt man für die Herstellung unseres Template Objekt 5 x das Item mit
   beruf: "Juwelier",
   itemTyp: "Ring",
   icon: "gelanoIcon.png",
-  rezepturItems:[{2,5},{4,10},{42,1}]
+  rezepturItems:[{rezepturItemId:2,anzahlBenoetigt:5},{rezepturItemId:4,anzahlBenoetigt:10},{rezepturItemId:42,anzahlBenoetigt:1}]
 }
 ```
 
