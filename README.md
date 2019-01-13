@@ -219,13 +219,18 @@ Als Antwort liefert er alle ItemObjekte, die diesen Itemtyp haben.`
 
 ### `POST /user`
 Auf dieser Route nimmt der Server ein User Objekt entgegen und trägt es in die Datenbank ein falls es den User noch nicht gibt.
-Als Antwort liefert er ein taskSucceeded Objekt.
+Als Antwort liefert er ein taskSucceeded Objekt wobei content ein User Objekt ist.
 Wenn der username des übergebenen Users bereits in der Datenbank existiert, ist success = false ansonsten true.
 
-### `POST /user/:username/itemliste`
-Auf dieser Route nimmt der Server ein usernamen und ein ItemListe Objekt entgegen und trägt es in die Datenbank ein falls der User existiert.
+### `POST /user/:userId/itemliste`
+Auf dieser Route nimmt der Server eine userId und ein ItemListe Objekt entgegen und trägt es in die Datenbank ein falls der User existiert.
+Als Antwort liefert er ein taskSucceeded Objekt wobei content ein ItemListe Ojekt ist.
+Wenn die userId des übergebenen Users nicht existiert, ist success = false ansonsten true.
+
+### `POST /user/:userId/itemliste/:itemListeId`
+Auf dieser Route nimmt der Server eine userId, itemListeId und ein ItemListe Objekt entgegen und trägt das Item in die entsprechende ItemListe in die Datenbank ein falls der User, die Itemliste und das Item existiert.
 Als Antwort liefert er ein taskSucceeded Objekt.
-Wenn der username des übergebenen Users nicht existiert, ist success = false ansonsten true.
+Wenn die userId oder itemId nicht existiert, ist success = false ansonsten true.
 
 ### `DELETE /user/:username`
 Auf dieser Route nimmt der Server einen usernamen entgegen.
@@ -295,11 +300,12 @@ Enthält typId und name.
 ```
 
 #### Template Objekt taskSucceeded
-Dieses Objekt wird bei den POST und DELETE befehlen zurückgegeben. Dabei gibt "success" an, ob die Aufgabe des entsprechenden Befehls erfolgreich ausgeführt werden konnte.
+Dieses Objekt wird bei den POST und DELETE befehlen zurückgegeben. Dabei gibt "success" an, ob die Aufgabe des entsprechenden Befehls erfolgreich ausgeführt werden konnte und der content gibt das Objekt, welches gepostet wurde an. Das ist z.b. wichtig bei der erstellung eines Benutzers um direkt die id des users zurück zu liefern.
 
 ```javascript
 {
-  success: true
+  success: true,
+  content: new_user
 }
 ```
 
