@@ -173,7 +173,7 @@ Berufe: **berufeId: int**, name: String
 
 besitztListe: **userId: int**, **itemListeId: int**
 
-enthaeltItems: **itemListeId: int**, **itemId: int**
+enthaeltItems: **itemListeId: int**, **itemId: int**, anzahl:int
 
 hatAlsRezeptur: **itemId: int**, **rezepturItemId: int**, anzahlBenoetigt: int
 
@@ -183,7 +183,7 @@ istItemTyp: **itemId: int**, **typId**
 
 
 ## API-Beschreibung
-Die API bietet insgesamt neun GET Befehle, zwei POST Befehle und ein DELETE Befehl. Die entsprechenden Objekte sind unter dem Abschnitt "Template Object" zu finden.
+Die API bietet insgesamt neun GET Befehle, drei POST Befehle und drei DELETE Befehle. Die entsprechenden Objekte sind unter dem Abschnitt "Template Object" zu finden.
 
 ### `GET /user`
 Auf dieser Route liefert der Server alle User Objekte, die in der Datenbank gespeichert sind.
@@ -228,12 +228,13 @@ Als Antwort liefert er ein taskSucceeded Objekt wobei content ein ItemListe Ojek
 Wenn die userId des übergebenen Users nicht existiert, ist success = false ansonsten true.
 
 ### `POST /user/:userId/itemliste/:itemListeId`
-Auf dieser Route nimmt der Server eine userId, itemListeId und ein ItemListe Objekt entgegen und trägt das Item in die entsprechende ItemListe in die Datenbank ein falls der User, die Itemliste und das Item existiert.
+Auf dieser Route nimmt der Server eine userId, itemlisteId und ein enthaeltItem Objekt entgegen und trägt das Item in die
+entsprechende ItemListe in die Datenbank ein falls der User, die itemliste und das Item existiert.
 Als Antwort liefert er ein taskSucceeded Objekt.
 Wenn die userId oder itemId nicht existiert, ist success = false ansonsten true.
 
-### `DELETE /user/:username`
-Auf dieser Route nimmt der Server einen usernamen entgegen.
+### `DELETE /user/:userId`
+Auf dieser Route nimmt der Server eine userId entgegen.
 Falls der username existiert wird der Entsprechende User mit samt seinen Daten (ItemListen) aus der Datenbank gelöscht.
 Als Antwort liefert der Server ein taskSucceeded Objekt.
 Wenn der username des übergebenen Users nicht existiert, ist success = false ansonsten true.
@@ -258,7 +259,7 @@ Enthält name der ItemListe und alle itemIds von Items die in der Liste gespeich
 {
   itemListeId: 0,
   name: "SchneiderLeveln",
-  items: [6,7,42]
+  items: [{itemId:6, anzahl: 2},{itemId:4, anzahl: 5},{itemId:42, anzahl: 1}]
 }
 ```
 
@@ -285,7 +286,7 @@ Enthält berufId und name.
 ```javascript
 {
   berufId: 1,
-  name: Juwelier
+  name: "Juwelier"
 }
 ```
 
@@ -295,7 +296,17 @@ Enthält typId und name.
 ```javascript
 {
   typId: 1,
-  name: Ring
+  name: "Ring"
+}
+```
+
+#### Template Objekt enthaeltItem
+Enthält itemId und anzahl. Anzahl gibt an, wie oft das Item hergestellt werden soll
+
+```javascript
+{
+  itemId: 1,
+  anzahl: 3
 }
 ```
 
