@@ -235,9 +235,22 @@ Wenn die userId oder itemId nicht existiert, ist success = false ansonsten true.
 
 ### `DELETE /user/:userId`
 Auf dieser Route nimmt der Server eine userId entgegen.
-Falls der username existiert wird der Entsprechende User mit samt seinen Daten (ItemListen) aus der Datenbank gelöscht.
+Falls der User existiert wird der Entsprechende User mit samt seinen Daten (ItemListen) aus der Datenbank gelöscht.
 Als Antwort liefert der Server ein taskSucceeded Objekt.
-Wenn der username des übergebenen Users nicht existiert, ist success = false ansonsten true.
+Wenn die userId des übergebenen Users nicht existiert, ist success = false ansonsten true.
+
+### `DELETE /user/:userId/itemliste/:itemListeId`
+Auf dieser Route nimmt der Server eine userId und eine itemListeId entgegen.
+Falls der username und die itemListe existiert wird die itemListe aus der Datenbank gelöscht.
+Als Antwort liefert der Server ein taskSucceeded Objekt.
+Wenn der User oder die ItemListe des übergebenen Users nicht existiert, ist success = false ansonsten true.
+
+
+### `DELETE /user/:userId/itemliste/:itemListeId/item/:itemId`
+Auf dieser Route nimmt der Server eine userId, itemListeId und itemId entgegen.
+Falls der User, die Itemliste und das Item in der Itemliste existiert wird das Item aus der entsprechenden Itemliste gelöscht.
+Als Antwort liefert der Server ein taskSucceeded Objekt.
+Wenn der der User, die Itemliste und das Item in der Itemliste des übergebenen Users nicht existiert, ist success = false ansonsten true.
 
 ### Template Object
 
