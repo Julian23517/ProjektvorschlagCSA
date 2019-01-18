@@ -202,7 +202,7 @@ Auf dieser Route liefert der Server alle Item Objekte die herstellbar sind`
 ### `GET /berufe`
 Auf dieser Route liefert der Server alle Berufe Objekte, die in der Datenbank gespeichert sind`
 
-### `GET /itemTypen`
+### `GET /itemtypen`
 Auf dieser Route liefert der Server alle itemTypen Objekte, die in der Datenbank gespeichert sind`
 
 ### `Get /items/:itemId`
@@ -222,12 +222,12 @@ Auf dieser Route nimmt der Server ein User Objekt entgegen und trägt es in die 
 Als Antwort liefert er ein taskSucceeded Objekt wobei content ein User Objekt ist.
 Wenn der username des übergebenen Users bereits in der Datenbank existiert, ist success = false ansonsten true.
 
-### `POST /user/:userId/itemliste`
+### `POST /user/:userId/itemlisten`
 Auf dieser Route nimmt der Server eine userId und ein ItemListe Objekt entgegen und trägt es in die Datenbank ein falls der User existiert.
 Als Antwort liefert er ein taskSucceeded Objekt wobei content ein ItemListe Ojekt ist.
 Wenn die userId des übergebenen Users nicht existiert, ist success = false ansonsten true.
 
-### `POST /user/:userId/itemliste/:itemListeId`
+### `POST /user/:userId/itemlisten/:itemListeId`
 Auf dieser Route nimmt der Server eine userId, itemlisteId und ein enthaeltItem Objekt entgegen und trägt das Item in die
 entsprechende ItemListe in die Datenbank ein falls der User, die itemliste und das Item existiert.
 Als Antwort liefert er ein taskSucceeded Objekt.
@@ -239,14 +239,14 @@ Falls der User existiert wird der Entsprechende User mit samt seinen Daten (Item
 Als Antwort liefert der Server ein taskSucceeded Objekt.
 Wenn die userId des übergebenen Users nicht existiert, ist success = false ansonsten true.
 
-### `DELETE /user/:userId/itemliste/:itemListeId`
+### `DELETE /user/:userId/itemlisten/:itemListeId`
 Auf dieser Route nimmt der Server eine userId und eine itemListeId entgegen.
 Falls der username und die itemListe existiert wird die itemListe aus der Datenbank gelöscht.
 Als Antwort liefert der Server ein taskSucceeded Objekt.
 Wenn der User oder die ItemListe des übergebenen Users nicht existiert, ist success = false ansonsten true.
 
 
-### `DELETE /user/:userId/itemliste/:itemListeId/item/:itemId`
+### `DELETE /user/:userId/itemlisten/:itemListeId/item/:itemId`
 Auf dieser Route nimmt der Server eine userId, itemListeId und itemId entgegen.
 Falls der User, die Itemliste und das Item in der Itemliste existiert wird das Item aus der entsprechenden Itemliste gelöscht.
 Als Antwort liefert der Server ein taskSucceeded Objekt.
@@ -324,11 +324,12 @@ Enthält itemId und anzahl. Anzahl gibt an, wie oft das Item hergestellt werden 
 ```
 
 #### Template Objekt taskSucceeded
-Dieses Objekt wird bei den POST und DELETE befehlen zurückgegeben. Dabei gibt "success" an, ob die Aufgabe des entsprechenden Befehls erfolgreich ausgeführt werden konnte und der content gibt das Objekt, welches gepostet wurde an. Das ist z.b. wichtig bei der erstellung eines Benutzers um direkt die id des users zurück zu liefern.
+Dieses Objekt wird bei den POST und DELETE befehlen zurückgegeben. Dabei gibt "success" an, ob die Aufgabe des entsprechenden Befehls erfolgreich ausgeführt werden konnte und der content gibt das Objekt, welches gepostet wurde an. Das ist z.b. wichtig bei der erstellung eines Benutzers um direkt die id des users zurück zu liefern. Success und message sind immer definiert aber content kann auch undefined sein.
 
 ```javascript
 {
   success: true,
+  message: "User mit Id = 0 wurde hinzugefügt!"
   content: new_user
 }
 ```
