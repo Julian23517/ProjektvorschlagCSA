@@ -255,7 +255,7 @@ Wenn der der User, die Itemliste und das Item in der Itemliste des übergebenen 
 ### Template Object
 
 #### Template Object User
-Enthält id, username und Passwort
+Enthält username und Passwort
 
 ```javascript
 {
