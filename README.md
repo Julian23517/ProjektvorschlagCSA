@@ -259,7 +259,6 @@ Enthält id, username und Passwort
 
 ```javascript
 {
-  userId: 0,
   username: "katzenlover",
   passwort: "felixFelicis"
 }
