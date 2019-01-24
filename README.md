@@ -297,7 +297,7 @@ Enthält berufId und name.
 
 ```javascript
 {
-  berufId: 1,
+  berufeId: 1,
   name: "Juwelier"
 }
 ```
