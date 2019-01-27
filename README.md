@@ -209,11 +209,11 @@ Auf dieser Route liefert der Server alle itemTypen Objekte, die in der Datenbank
 Auf dieser Route nimmt der Server eine itemId entgegen.
 Als Antwort liefert er das Item Objekt mit der entsprechenden itemId`
 
-### `Get /items/beruf/:berufId`
+### `Get /items/berufe/:berufId`
 Auf dieser Route nimmt der Server eine berufId entgegen.
 Als Antwort liefert er alle ItemObjekte, die durch diesen Beruf hergestellt werden`
 
-### `Get /items/typ/:typId`
+### `Get /items/itemtypen/:typId`
 Auf dieser Route nimmt der Server eine typId entgegen.
 Als Antwort liefert er alle ItemObjekte, die diesen Itemtyp haben.`
 
