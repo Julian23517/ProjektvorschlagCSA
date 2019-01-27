@@ -255,17 +255,19 @@ Wenn der der User, die Itemliste und das Item in der Itemliste des übergebenen 
 ### Template Object
 
 #### Template Object User
-Enthält username und Passwort
+Enthält userId, username, passwort und email bei einem Post Befehl muss userId nicht angegeben werden
 
 ```javascript
 {
+  userId: 1,
   username: "katzenlover",
-  passwort: "felixFelicis"
+  passwort: "felixFelicis",
+  email: "felix@felix.de"
 }
 ```
 
 #### Template Objekt ItemListe
-Enthält name der ItemListe und alle itemIds von Items die in der Liste gespeichert wurden
+Enthält name der ItemListe und alle itemIds von Items die in der Liste gespeichert wurden. Bei einem POST Befehl wird nur name übergeben
 
 ```javascript
 {
@@ -374,7 +376,7 @@ Verantwortlicher: Jennifer Nguyen
 | Implementierung Login + Registrierung	        |  6          |
 | Implementierung Übersichtsseite + Filter      |  8          |
 | Implementierung Übersicht über alle Listen    |  6          |
-| Implementierung Gegenstände einer Liste	    |  8          |
+| Implementierung Gegenstände einer Liste	      |  8          |
 | Implementierung Ressourcen in einer Liste     |  7          |
 | **Summe**                                     |  **60**     |
 
