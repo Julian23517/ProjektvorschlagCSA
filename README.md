@@ -217,6 +217,9 @@ Als Antwort liefert er alle ItemObjekte, die durch diesen Beruf hergestellt werd
 Auf dieser Route nimmt der Server eine typId entgegen.
 Als Antwort liefert er alle ItemObjekte, die diesen Itemtyp haben.`
 
+### `GET /user/:userId/items/:itemId`
+AUf dieser Route nimmt der server eine userId und itemId entgegen und liefert ein enthaeltItem Objekt.
+
 ### `POST /user`
 Auf dieser Route nimmt der Server ein User Objekt entgegen und trägt es in die Datenbank ein falls es den User noch nicht gibt.
 Als Antwort liefert er ein taskSucceeded Objekt wobei content ein User Objekt ist.
@@ -233,6 +236,12 @@ entsprechende ItemListe in die Datenbank ein falls der User, die itemliste und d
 Als Antwort liefert er ein taskSucceeded Objekt.
 Wenn die userId oder itemId nicht existiert, ist success = false ansonsten true.
 
+### `POST /user/:userId/items`
+Auf dieser Route nimmt der Server eine userId und ein enthaeltItem Objekt entgegen und trägt das Item in die
+mit der angegebenen Anzahl ein. Die Anzahl stellt dar wie viele items dieser Art der Benutzer besitzt
+Als Antwort liefert er ein taskSucceeded Objekt.
+Wenn die userId oder itemId nicht existiert, ist success = false ansonsten true.
+
 ### `DELETE /user/:userId`
 Auf dieser Route nimmt der Server eine userId entgegen.
 Falls der User existiert wird der Entsprechende User mit samt seinen Daten (ItemListen) aus der Datenbank gelöscht.
@@ -246,7 +255,7 @@ Als Antwort liefert der Server ein taskSucceeded Objekt.
 Wenn der User oder die ItemListe des übergebenen Users nicht existiert, ist success = false ansonsten true.
 
 
-### `DELETE /user/:userId/itemlisten/:itemListeId/item/:itemId`
+### `DELETE /user/:userId/itemlisten/:itemListeId/items/:itemId`
 Auf dieser Route nimmt der Server eine userId, itemListeId und itemId entgegen.
 Falls der User, die Itemliste und das Item in der Itemliste existiert wird das Item aus der entsprechenden Itemliste gelöscht.
 Als Antwort liefert der Server ein taskSucceeded Objekt.
