@@ -5,6 +5,8 @@
 
 ## Version 1.0.0
 
+## Scripts
+all commands have to be executed from /server
 
 ### Basic NPM Setup
 ```bash
@@ -142,58 +144,86 @@ Verantwortlicher: Julian Schulzeck
 
 #### Implementierung und Validierung
 
-| Aufgabe                                        | Zeit in Std |
-|------------------------------------------------|------------:|
-| Setup Framework                                |             |
-| - Framework express                            |  0.25       |
-| - Framework jest                               |  0.5        |
-| - Framework sqlite3                            |  0.25       |
-| Datenbank                                      |             |
-| Datencrawler Implementieren                    |  8          |
-| Setup                                          |  2          |
-| Implementierung Auth                           |  3          |
-| Implementierung GET /user                      |  2          |
-| Implementierung GET /user/:username            |  2          |
-| Implementierung GET /user/:username/itemlisten |  2          |
-| Implementierung GET /items                     |  2.5        |
-| Implementierung Get /items/:itemId             |  2.5        |
-| Implementierung POST /user                     |  2.5        |
-| Implementierung POST /user/:username/itemliste |  2.5        |
-| Implementierung DELETE /user/:username         |  2          |
-| Implementierung Validierungsschemata           |  3          |
-| **Summe**                                      |  **35**     |
+| Aufgabe                                                                       | Zeit in Std | Zeit Benötigt | Differenz |
+|-------------------------------------------------------------------------------|------------:|---------------|----------:|
+| Setup Framework                                                               |             |               |           |
+| - Framework express                                                           |  0.25       | 0.1           | - 0.15    |
+| - Framework jest                                                              |  0.5        | 0.2           | - 0.3     |
+| - Framework sqlite3                                                           |  0.25       | 0.1           | - 0.15    |
+| - Framework celebrate                                                         |  -          | 0.1           | + 0.1     |
+| - Framework cheerio                                                           |  -          | 0.1           | + 0.1     |
+| - Framework cors                                                              |  -          | 0.1           | + 0.1     |
+| - Framework request                                                           |  -          | 0.1           | + 0.1     |
+| - Framework request-promise                                                   |  -          | 0.2           | + 0.2     |
+| Datenbank                                                                     |             |               |           |
+| Datencrawler Implementieren                                                   |  8          | 15            | + 7       |
+| Setup                                                                         |  2          | 4             | + 2       |
+| Implementierung Auth                                                          |  3          | -             | - 3       |
+| Implementierung GET /user                                                     |  2          | 0.5           | - 1.5     |
+| Implementierung GET /user/:username                                           |  2          | 1             | - 1       |
+| Implementierung GET /user/:username/itemlisten                                |  2          | 2             | + 0       |
+| Implementierung GET /items                                                    |  2.5        | 3             | + 0,5     |
+| Implementierung GET /berufe                                                   |  -          | 0.5           | + 0,5     |
+| Implementierung GET /itemtypen                                                |  -          | 0.5           | + 0,5     |
+| Implementierung GET /items/:itemId                                            |  2.5        | 1             | - 1.5     |
+| Implementierung GET /items/berufe/:berufId                                    |  -          | 2             | + 2       |
+| Implementierung GET /items/itemtypen/:typId                                   |  -          | 2             | + 2       |
+| Implementierung GET /user/:userId/items/:itemId                               |  -          | 1             | + 1       |
+| Implementierung POST /user                                                    |  2.5        | 1.5           | - 1       |
+| Implementierung POST /user/:username/itemliste                                |  2.5        | 2.5           | + 0       |
+| Implementierung POST /user/:userId/itemlisten/:itemListeId                    |  -          | 2.5           | + 2.5     |
+| Implementierung POST /user/:userId/items                                      |  -          | 1             | + 1       |
+| Implementierung DELETE /user/:username                                        |  2          | 2             | + 0       |
+| Implementierung DELETE /user/:userId/itemlisten/:itemListeId                  |  -          | 2.5           | + 2.5     |
+| Implementierung DELETE /user/:userId/itemlisten/:itemListeId/items/:itemId    |  -          | 2.5           | + 2.5     |
+| Implementierung Validierungsschemata                                          |  3          | 3             | + 0       |
+| **Summe**                                                                     |  **35**     | **54**        | **+ 19**  |
 
 #### Dokumentation / Tests
 
-| Aufgabe                                             | Zeit in Std |
-|-----------------------------------------------------|------------:|
-| Setup Tests                                         |  4          |
-| Test DB                                             |  4          |
-| Test GET /user                                      |  2          |
-| Test GET /user/:username                            |  2          |
-| Test GET /user/:username/itemlisten                 |  2          |
-| Test GET /items                                     |  2          |
-| Test Get /items/:itemId                             |  2          |
-| Test POST /user                                     |  2          |
-| Test POST /user/:username/itemliste                 |  2          |
-| Test DELETE /user/:username                         |  2          |
-| API-Dokumentation GET /user                         |  1          |
-| API-Dokumentation GET /user/:username               |  1          |
-| API-Dokumentation GET /user/:username/itemlisten    |  1          |
-| API-Dokumentation GET /items                        |  1          |
-| API-Dokumentation Get /items/:itemId                |  1          |
-| API-Dokumentation POST /user                        |  1.5        |
-| API-Dokumentation POST /user/:username/itemliste    |  1.5        |
-| API-Dokumentation DELETE /user/:username            |  1          |
-| Dokumentation                                       |  1          |
-| Vergleich SOLL / IST Stunden                        |  1          |
-| **Summe**                                           |  **35**     |
+| Aufgabe                                                                       | Zeit in Std | Zeit Benötigt | Differenz |
+|-------------------------------------------------------------------------------|------------:|---------------|----------:|
+| Setup Tests                                                                   |  4          | 1             | - 3       |
+| Test DB                                                                       |  4          | 3             | - 1       |
+| Test GET /user                                                                |  2          | 0.5           | - 1.5     |
+| Test GET /user/:username                                                      |  2          | 0.5           | - 1.5     |
+| Test GET /user/:username/itemlisten                                           |  2          | 1             | - 1       |
+| Test GET /items                                                               |  2          | 1             | - 1       |
+| Test GET /berufe                                                              |  -          | 0.5           | + 0.5     |
+| Test GET /itemtypen                                                           |  -          | 0.5           | + 0.5     |
+| Test GET /items/:itemId                                                       |  2          | 1             | - 1       |
+| Test POST /user                                                               |  2          | 2             | + 0       |
+| Test POST /user/:username/itemliste                                           |  2          | 2             | + 0       |
+| Test POST /user/:userId/itemlisten/:itemListeId                               |  -          | 1.5           | + 1.5     |
+| Test DELETE /user/:username                                                   |  2          | 1.5           | - 0.5     |
+| Test DELETE /user/:userId/itemlisten/:itemListeId                             |  -          | 2             | + 2       |
+| Test DELETE /user/:userId/itemlisten/:itemListeId/items/:itemId               |  -          | 2             | + 2       |
+| API-Dokumentation GET /user                                                   |  1          | 0.5           | - 0.5     |
+| API-Dokumentation GET /user/:username                                         |  1          | 0.5           | - 0.5     |
+| API-Dokumentation GET /user/:username/itemlisten                              |  1          | 0.5           | - 0.5     |
+| API-Dokumentation GET /items                                                  |  1          | 0.5           | - 0.5     |
+| API-Dokumentation GET /berufe                                                 |  -          | 0.5           | + 0.5     |
+| API-Dokumentation GET /itemtypen                                              |  -          | 0.5           | + 0.5     |
+| API-Dokumentation Get /items/:itemId                                          |  1          | 0.5           | - 0.5     |
+| API-Dokumentation Get /items/berufe/:berufId                                  |  -          | 0.5           | + 0.5     |
+| API-Dokumentation Get /items/itemtypen/:typId                                 |  -          | 0.5           | + 0.5     |
+| API-Dokumentation Get /user/:userId/items/:itemId                             |  -          | 0.5           | + 0.5     |
+| API-Dokumentation POST /user                                                  |  1.5        | 0.5           | - 1       |
+| API-Dokumentation POST /user/:username/itemliste                              |  1.5        | 0.5           | - 1       |
+| API-Dokumentation POST /user/:userId/itemlisten/:itemListeId                  |  -          | 0.5           | + 0.5     |
+| API-Dokumentation POST /user/:userId/items                                    |  -          | 0.5           | + 0.5     |
+| API-Dokumentation DELETE /user/:username                                      |  1          | 0.5           | - 0.5     |
+| API-Dokumentation DELETE /user/:userId/itemlisten/:itemListeId                |  -          | 0.5           | + 0.5     |
+| API-Dokumentation DELETE /user/:userId/itemlisten/:itemListeId/items/:itemId  |  -          | 0.5           | + 0.5     |
+| Dokumentation                                                                 |  1          | 1.5           | + 0.5     |
+| Vergleich SOLL / IST Stunden                                                  |  1          | 1.5           | + 0.5     |
+| **Summe**                                                                     |  **35**     | **31.5**      |**- 3.5**  |
 
 
 #### Zusammenfassung
-| Teil                                     | Zeit in Std |
-|------------------------------------------|------------:|
-| Projektvorbereitung                      |  30         |
-| Implementierung                          |  35         |
-| Dokumentation / Tests                    |  35         |
-| **Summe**                                |  100        |
+| Teil                                     | Zeit in Std | Zeit Benötigt | Differenz |
+|------------------------------------------|------------:|---------------|----------:|
+| Projektvorbereitung                      |  30         | 30            | + 0       |
+| Implementierung                          |  35         | 54            | + 19      |
+| Dokumentation / Tests                    |  35         | 31.5          | - 3.5     |
+| **Summe**                                |  **100**    | **115.5**     | **+ 15.5**|
